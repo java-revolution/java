@@ -1,5 +1,5 @@
 package tool;
-
+//変更テスト
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,13 +24,13 @@ public class Csv {
 					String[] cols = line.split(",");
 					csvData.add(cols);
 				}
-			// �ǂݍ��݃f�[�^�̕\��
+			// 読み込みデータの表示
 				for(String[]row:csvData){
 					int i = 0;
 					dir.add(row[0]);
-					System.out.println("�@: " + row[0]);
-					System.out.println("�@: " + row[1]);
-					System.out.println("�@: " + row[2]);
+					System.out.println("　: " + row[0]);
+					System.out.println("　: " + row[1]);
+					System.out.println("　: " + row[2]);
 					System.out.println();
 				
 				}
