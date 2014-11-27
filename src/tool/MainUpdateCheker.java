@@ -25,8 +25,8 @@ class MainUpdateCheker{
 		try{
 				//メニューアイテムの作成
 				MenuItem watchingItem = new MenuItem("監視対象一覧");
-				MenuItem stopItem = new MenuItem("一時停止");
-				MenuItem restartItem = new MenuItem("再開");
+				final MenuItem stopItem = new MenuItem("一時停止");
+				final MenuItem restartItem = new MenuItem("再開");
 				MenuItem exitItem = new MenuItem("終了");
 				restartItem.setEnabled(false);
 			
