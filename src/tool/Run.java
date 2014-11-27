@@ -9,6 +9,7 @@ public class Run extends TimerTask {
 	static int Size;
 	int FirstSize;
 	// ブラウザ上から直接修正
+	// エクリプス上から修正（エンコード変更）
 	public void run() {
 		
 		System.out.println("タスク実行：" + new Date());
