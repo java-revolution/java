@@ -8,26 +8,26 @@ import java.util.TimerTask;
 public class Run extends TimerTask {
 	static int Size;
 	int FirstSize;
-	
+	// ãƒ–ãƒ©ã‚¦ã‚¶ä¸Šã‹ã‚‰ç›´æ¥ä¿®æ­£
 	public void run() {
 		
-		System.out.println("ƒ^ƒXƒNÀsF" + new Date());
+		System.out.println("ã‚¿ã‚¹ã‚¯å®Ÿè¡Œï¼š" + new Date());
 		File TestFile = new File("test.txt");
 		Size = (int)TestFile.length();
 		System.out.print(Size);
 		
 	            	if(FirstSize == 0){
-	            	//	MainUpdateCheker.icon.displayMessage("ƒƒbƒZ[ƒW", "ƒtƒ@ƒCƒ‹‚Ì‘å‚«‚³‚ª0‚Å‚·", TrayIcon.MessageType.WARNING);
+	            	//	MainUpdateCheker.icon.displayMessage("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸", "ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤§ãã•ãŒ0ã§ã™", TrayIcon.MessageType.WARNING);
 	            		FirstSize = Size;
 	            	}
 	            	
 	            	if(FirstSize == Size){
-	            	//	MainUpdateCheker.icon.displayMessage("ƒƒbƒZ[ƒW", "ƒtƒ@ƒCƒ‹‚Ì‘å‚«‚³‚ª“¯‚¶‚Å‚·", TrayIcon.MessageType.WARNING);
+	            	//	MainUpdateCheker.icon.displayMessage("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸", "ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤§ãã•ãŒåŒã˜ã§ã™", TrayIcon.MessageType.WARNING);
 	            		FirstSize = Size;
 	            	}
 	            	
 	            	else if (FirstSize != Size) {
-	            		MainUpdateCheker.icon.displayMessage("ƒƒbƒZ[ƒW", "ƒtƒ@ƒCƒ‹‚ªXV‚³‚ê‚Ü‚µ‚½", TrayIcon.MessageType.INFO);
+	            		MainUpdateCheker.icon.displayMessage("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸", "ãƒ•ã‚¡ã‚¤ãƒ«ãŒæ›´æ–°ã•ã‚Œã¾ã—ãŸ", TrayIcon.MessageType.INFO);
 	            		FirstSize = Size;
 	            	}
 	            }					
