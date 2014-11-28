@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class Csv {
 	static ArrayList<String> dir = new ArrayList<String>();
-	static ArrayList<String[]> csvData = new ArrayList();
+	static ArrayList<String[]> csvData = new ArrayList<String[]>();
 	
 	static ArrayList<String> Csvload(){
-		String filename = "test.csv";
+		String filename = "./res/data/test.csv";
 		
 		File file = new File(filename);
 		try {
@@ -24,13 +24,13 @@ public class Csv {
 					String[] cols = line.split(",");
 					csvData.add(cols);
 				}
-			// 隱ｭ縺ｿ霎ｼ縺ｿ繝�繝ｼ繧ｿ縺ｮ陦ｨ遉ｺ
+				// 読み込みデータの表示
 				for(String[]row:csvData){
 					int i = 0;
 					dir.add(row[0]);
-					System.out.println("縲�: " + row[0]);
-					System.out.println("縲�: " + row[1]);
-					System.out.println("縲�: " + row[2]);
+					System.out.println("　: " + row[0]);
+					System.out.println("　: " + row[1]);
+					System.out.println("　: " + row[2]);
 					System.out.println();
 				
 				}
