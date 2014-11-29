@@ -13,7 +13,7 @@ public class Run extends TimerTask {
 	public void run() {
 		
 		System.out.println("タスク実行：" + new Date());
-		File TestFile = new File("test.txt");
+		File TestFile = new File("res/data/test.txt");
 		Size = (int)TestFile.length();
 		System.out.print(Size);
 		

@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
+//ãƒ¡ã‚¤ãƒ³ã‚¯ãƒ©ã‚¹
 class MainUpdateCheker{
 	static TrayIcon icon;
 	static TimerTask task;
@@ -23,29 +23,29 @@ class MainUpdateCheker{
 	
 	public static void main(String args[]) throws InterruptedException{
 		try{
-				//ƒƒjƒ…[ƒAƒCƒeƒ€‚Ìì¬
-				MenuItem watchingItem = new MenuItem("ŠÄ‹‘ÎÛˆê——");
-				final MenuItem stopItem = new MenuItem("ˆê’â~");
-				final MenuItem restartItem = new MenuItem("ÄŠJ");
-				MenuItem exitItem = new MenuItem("I—¹");
+				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ã®ä½œæˆ
+				MenuItem watchingItem = new MenuItem("ç›£è¦–å¯¾è±¡ä¸€è¦§");
+				final MenuItem stopItem = new MenuItem("ä¸€æ™‚åœæ­¢");
+				final MenuItem restartItem = new MenuItem("å†é–‹");
+				MenuItem exitItem = new MenuItem("çµ‚äº†");
 				restartItem.setEnabled(false);
 			
-				//ƒAƒCƒRƒ“‚Ìì¬
+				//ã‚¢ã‚¤ã‚³ãƒ³ã®ä½œæˆ
 				SystemTray tray = SystemTray.getSystemTray();
-				icon = new TrayIcon(ImageIO.read(new File("tray_icon.png")));
+				icon = new TrayIcon(ImageIO.read(new File("res/pic/tray_icon.png")));
 				tray.add(icon);
 		
-				// ŠÄ‹‘ÎÛˆê——
+				//ç›£è¦–å¯¾è±¡ä¸€è¦§
 				watchingItem.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								UpdateChekerFrame.watching();
 							}
 				});
 			
-				// ˆê’â~ƒƒjƒ…[
+				//ä¸€æ™‚åœæ­¢ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				stopItem.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						icon.displayMessage("‚¨’m‚ç‚¹","ˆê’â~‚µ‚Ü‚µ‚½",MessageType.INFO);
+						icon.displayMessage("ãŠçŸ¥ã‚‰ã›","ä¸€æ™‚åœæ­¢ã—ã¾ã—ãŸ",MessageType.INFO);
 						task.cancel();
 						task = null;
 						stopItem.setEnabled(false);
@@ -53,31 +53,31 @@ class MainUpdateCheker{
 					}
 				});
 			
-				// ÄŠJ
+				//å†é–‹
 				restartItem.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						icon.displayMessage("‚¨’m‚ç‚¹","ÄŠJ‚µ‚Ü‚µ‚½",MessageType.INFO);
+						icon.displayMessage("ãŠçŸ¥ã‚‰ã›","å†é–‹ã—ã¾ã—ãŸ",MessageType.INFO);
 						if (task == null) {
 							task = new Run();
 						}
-						System.out.println("ÄŠJ‚µ‚Ü‚·");
+						System.out.println("å†é–‹ã—ã¾ã™");
 						timer.schedule(task, 0, 5000);
 						stopItem.setEnabled(true);
 						restartItem.setEnabled(false);
 					}
 				});
 			
-				// I—¹ƒƒjƒ…[
+				//çµ‚äº†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				exitItem.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						System.exit(0);
 				}
 				});
 			
-				// ƒ|ƒbƒvƒAƒbƒvƒƒjƒ…[
+				//ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				PopupMenu menu = new PopupMenu();
         
-				// ƒƒjƒ…[‚Éƒƒjƒ…[ƒAƒCƒeƒ€‚ğ’Ç‰Á
+				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ 
 				menu.add(stopItem);
 				menu.add(restartItem);
 				menu.add(exitItem);

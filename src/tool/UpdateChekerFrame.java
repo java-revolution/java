@@ -10,17 +10,17 @@ import javax.swing.JTable;
 
 public class UpdateChekerFrame extends JFrame{
 	static void watching(){
-		UpdateChekerFrame frame = new UpdateChekerFrame("ŠÄ‹‘ÎÛŠÇ—");
+		UpdateChekerFrame frame = new UpdateChekerFrame("ç›£è¦–å¯¾è±¡ç®¡ç†");
 		frame.setVisible(true);
 	}
 	
 	UpdateChekerFrame(String title){
 		String[][] tabledata = {
-			    {Csv.Csvload().get(0), "test", "txt", "ŠÄ‹’†"},
+			    {Csv.Csvload().get(0), "test", "txt", "ï¿½Äï¿½ï¿½ï¿½"},
 			    {"", "", "", ""},
 			    {"", "", "", ""},
 			    {"", "", "", ""}};
-		String[] columnNames = {"ŠÄ‹", "‘ÎÛ", "ƒ^ƒCƒv", "ó‘Ô"};
+		String[] columnNames = {"ç›£è¦–", "å¯¾è±¡", "ã‚¿ã‚¤ãƒ—", "çŠ¶æ…‹"};
 		
 		JTable table = new JTable(tabledata,columnNames);
 		setBounds(600, 300, 400, 400);
