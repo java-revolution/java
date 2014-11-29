@@ -11,7 +11,7 @@ public class Csv {
 	static ArrayList<String[]> csvData = new ArrayList<String[]>();
 	
 	static ArrayList<String> Csvload(){
-		String filename = "./res/data/test.csv";
+		String filename = "sCSV_FILE_PATH";
 		
 		File file = new File(filename);
 		try {
