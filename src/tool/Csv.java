@@ -7,15 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Csv {
-	
-	/** プロジェクトルートからのパス */
-	private static final String sCSV_FILE_PATH = "./res/data/test.csv";
-	
 	static ArrayList<String> dir = new ArrayList<String>();
 	static ArrayList<String[]> csvData = new ArrayList<String[]>();
 	
 	static ArrayList<String> Csvload(){
-		String filename = sCSV_FILE_PATH;
+		String filename = "./res/data/test.csv";
 		
 		File file = new File(filename);
 		try {
