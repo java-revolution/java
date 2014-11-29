@@ -14,7 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
-
+//通知テストコミット
 //メインクラス
 class MainUpdateCheker{
 	static TrayIcon icon;
