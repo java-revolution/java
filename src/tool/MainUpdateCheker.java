@@ -46,6 +46,7 @@ class MainUpdateCheker{
 				stopItem.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						icon.displayMessage("お知らせ","一時停止しました",MessageType.INFO);
+						System.out.println("一時停止します");
 						task.cancel();
 						task = null;
 						stopItem.setEnabled(false);
