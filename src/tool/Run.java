@@ -12,10 +12,14 @@ public class Run extends TimerTask {
 	// エクリプス上から修正（エンコード変更）
 	public void run() {
 		
-		System.out.println("タスク実行：" + new Date());
-		File TestFile = new File(Csv.Csvload().get(1));
-		Size = (int)TestFile.length();
+		File CheckFile = new File(Csv.Csvload().get(1));
+		Size = (int)CheckFile.length();
 		System.out.print(Size);
+		System.out.println("タスク実行：" + new Date());
+		
+	//	for(int i = 0;i<5;i++){
+	//		
+	//	}
 		
 	            	if(FirstSize == 0){
 	            	//	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルの大きさが0です", TrayIcon.MessageType.WARNING);

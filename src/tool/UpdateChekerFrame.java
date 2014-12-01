@@ -1,12 +1,14 @@
 package tool;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,7 +22,7 @@ public class UpdateChekerFrame extends JFrame{
 	UpdateChekerFrame(String title){
 		//テーブルデータ作成
 		String[][] tabledata = {
-			    {Csv.Csvload().get(0), Csv.Csvload().get(2), "txt", "監視中"},
+			    {Csv.Csvload().get(0), Csv.Csvload().get(1), "txt", "監視中"},
 			    {"", "", "", ""},
 			    {"", "", "", ""},
 			    {"", "", "", ""}
@@ -36,6 +38,15 @@ public class UpdateChekerFrame extends JFrame{
 	    //ボタン作成
 	    JButton addbutton = new JButton("追加");
 	    JButton delbutton = new JButton("削除");
+	    
+	    ActionListener al = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filechooser = new JFileChooser();
+				int selected = filechooser.showOpenDialog(null);
+			}
+		};
+	    
+	    addbutton.addActionListener(al);
 	    
 		//フレーム表示位置
 		setBounds(600, 300, 400, 400);
@@ -56,5 +67,7 @@ public class UpdateChekerFrame extends JFrame{
         contentPane1.add(sp);
         contentPane2.add(delbutton);
         contentPane2.add(addbutton);
+        
+        
 	}
 }
