@@ -27,10 +27,10 @@ public class UpdateChekerFrame extends JFrame{
 	UpdateChekerFrame(String title){
 		//テーブルデータ作成
 		String[][] tabledata = {
-			    {Csv.Csvload().get(0), "", "txt", "監視中"},
-			    {"", "", "", ""},
-			    {"", "", "", ""},
-			    {"", "", "", ""}
+		    {Csv.Csvload().get(0), "", "txt", "監視中"},
+		    {"", "", "", ""},
+		    {"", "", "", ""},
+		    {"", "", "", ""}
 		};
 		String[] columnNames = {"名前", "対象", "タイプ", "状態"};
 		
@@ -89,7 +89,6 @@ public class UpdateChekerFrame extends JFrame{
         contentPane1.add(sp);
         contentPane2.add(delbutton);
         contentPane2.add(addbutton);
-        
-        
+
 	}
 }
