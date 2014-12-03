@@ -52,18 +52,18 @@ public class UpdateChekerFrame extends JFrame{
 					File file = filechooser.getSelectedFile();
 					System.out.println(file.getAbsolutePath());
 					try {
-						FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, true);
-			            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-			            
-			            pw.print(file.getAbsolutePath());
-			            pw.print(",");
-			            pw.println();
-			            pw.close();
-			            
-					} catch (IOException ex) {
-			            //例外時処理
-			            ex.printStackTrace();
-					}
+					FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, true);
+		            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+		            
+		            pw.print(file.getAbsolutePath());
+		            pw.print(",");
+		            pw.println();
+		            pw.close();
+		            
+					 } catch (IOException ex) {
+				            //例外時処理
+				            ex.printStackTrace();
+				        }
 				}
 			}
 		};
@@ -89,6 +89,7 @@ public class UpdateChekerFrame extends JFrame{
         contentPane1.add(sp);
         contentPane2.add(delbutton);
         contentPane2.add(addbutton);
-
+        
+        
 	}
 }
