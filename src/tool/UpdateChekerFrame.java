@@ -6,6 +6,11 @@ import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -22,7 +27,7 @@ public class UpdateChekerFrame extends JFrame{
 	UpdateChekerFrame(String title){
 		//テーブルデータ作成
 		String[][] tabledata = {
-			    {Csv.Csvload().get(0), Csv.Csvload().get(1), "txt", "監視中"},
+			    {Csv.Csvload().get(0), "", "txt", "監視中"},
 			    {"", "", "", ""},
 			    {"", "", "", ""},
 			    {"", "", "", ""}
@@ -43,6 +48,23 @@ public class UpdateChekerFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser filechooser = new JFileChooser();
 				int selected = filechooser.showOpenDialog(null);
+				if(selected == JFileChooser.APPROVE_OPTION){
+					File file = filechooser.getSelectedFile();
+					System.out.println(file.getAbsolutePath());
+					try {
+					FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, true);
+		            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+		            
+		            pw.print(file.getAbsolutePath());
+		            pw.print(",");
+		            pw.println();
+		            pw.close();
+		            
+					 } catch (IOException ex) {
+				            //例外時処理
+				            ex.printStackTrace();
+				        }
+				}
 			}
 		};
 	    

@@ -12,7 +12,7 @@ public class Run extends TimerTask {
 	// エクリプス上から修正（エンコード変更）
 	public void run() {
 		
-		File CheckFile = new File(Csv.Csvload().get(1));
+		File CheckFile = new File(Csv.Csvload().get(0));
 		Size = (int)CheckFile.length();
 		System.out.print(Size);
 		System.out.println("タスク実行：" + new Date());

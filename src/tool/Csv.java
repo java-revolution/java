@@ -12,6 +12,11 @@ public class Csv {
 	//一時的に追加
 	static String sCSV_FILE_PATH = "./res/data/test.csv";
 	
+	//dirをリセットするコンストラクタ
+	Csv(){
+		dir.clear();
+	}
+	
 	static ArrayList<String> Csvload(){
 		String filename = sCSV_FILE_PATH;
 		
@@ -31,7 +36,7 @@ public class Csv {
 					int i;
 					for(i = 0;i<csvData.size();i++){
 						dir.add(row[0]);
-						dir.add(row[1]);
+						//dir.add(row[1]);
 						//System.out.println("　: " + row[0]);
 						//System.out.println("　: " + row[1]);
 					}
