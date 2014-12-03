@@ -22,28 +22,28 @@ public class Csv {
 		
 		File file = new File(filename);
 		try {
-				FileInputStream fis = new FileInputStream(file);
-				InputStreamReader isr = new InputStreamReader(fis);
-				BufferedReader br = new BufferedReader(isr);
-				String line;
-		 
-				while ( ( line = br.readLine()) != null ) {
-					String[] cols = line.split(",");
-					csvData.add(cols);
-				}
-				// 読み込みデータの表示
-				for(String[]row:csvData){
-					int i;
-					for(i = 0;i<csvData.size();i++){
-						dir.add(row[0]);
-						//dir.add(row[1]);
-						//System.out.println("　: " + row[0]);
-						//System.out.println("　: " + row[1]);
-					}
-				}
-			} catch(Exception e) {
-				e.printStackTrace();	
+			FileInputStream fis = new FileInputStream(file);
+			InputStreamReader isr = new InputStreamReader(fis);
+			BufferedReader br = new BufferedReader(isr);
+			String line;
+ 
+			while ( ( line = br.readLine()) != null ) {
+				String[] cols = line.split(",");
+				csvData.add(cols);
 			}
+			// 読み込みデータの表示
+			for(String[]row:csvData){
+				int i;
+				for(i = 0;i<csvData.size();i++){
+					dir.add(row[0]);
+					//dir.add(row[1]);
+					//System.out.println("　: " + row[0]);
+					//System.out.println("　: " + row[1]);
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();	
+		}
 		return dir;
 	}
 }
