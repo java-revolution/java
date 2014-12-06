@@ -27,7 +27,7 @@ public class UpdateChekerFrame extends JFrame{
 	UpdateChekerFrame(String title){
 		//テーブルデータ作成
 		String[][] tabledata = {
-		    {Csv.Csvload().get(0), "", "txt", "監視中"},
+		    {Csv.dir.get(0), "", "txt", "監視中"},
 		    {"", "", "", ""},
 		    {"", "", "", ""},
 		    {"", "", "", ""}
@@ -57,7 +57,7 @@ public class UpdateChekerFrame extends JFrame{
 			            
 			            pw.print(file.getAbsolutePath());
 			            pw.print(",");
-			            pw.println();
+			          //pw.println();
 			            pw.close();
 			            
 					} catch (IOException ex) {

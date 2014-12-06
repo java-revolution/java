@@ -12,15 +12,11 @@ public class Csv {
 	//一時的に追加
 	static String sCSV_FILE_PATH = "./res/data/test.csv";
 	
-	//dirをリセットするコンストラクタ
-	Csv(){
-		dir.clear();
-	}
-	
-	static ArrayList<String> Csvload(){
+	static void Csvload(){
 		String filename = sCSV_FILE_PATH;
-		
 		File file = new File(filename);
+		dir.clear();
+		
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			InputStreamReader isr = new InputStreamReader(fis);
@@ -31,11 +27,11 @@ public class Csv {
 				String[] cols = line.split(",");
 				csvData.add(cols);
 			}
+			br.close();
 			// 読み込みデータの表示
 			for(String[]row:csvData){
-				int i;
-				for(i = 0;i<csvData.size();i++){
-					dir.add(row[0]);
+				for(int i = 0;i < csvData.size();i++){
+					dir.add(row[i]);
 					//dir.add(row[1]);
 					//System.out.println("　: " + row[0]);
 					//System.out.println("　: " + row[1]);
@@ -44,7 +40,6 @@ public class Csv {
 		} catch(Exception e) {
 			e.printStackTrace();	
 		}
-		return dir;
 	}
 }
 

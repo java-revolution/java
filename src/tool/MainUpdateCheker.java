@@ -23,6 +23,7 @@ class MainUpdateCheker{
 	
 	public static void main(String args[]) throws InterruptedException{
 		try{
+			Csv.Csvload();
 			//メニューアイテムの作成
 			MenuItem watchingItem = new MenuItem("監視対象一覧");
 			final MenuItem stopItem = new MenuItem("一時停止");
