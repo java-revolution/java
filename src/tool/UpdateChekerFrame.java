@@ -57,7 +57,10 @@ public class UpdateChekerFrame extends JFrame{
 			            
 			            pw.print(file.getAbsolutePath());
 			            pw.print(",");
-			          //pw.println();
+			            // ******************************
+			            // ↓はあってもよいのでは
+			            // ******************************
+			            // pw.println();
 			            pw.close();
 			            
 					} catch (IOException ex) {
