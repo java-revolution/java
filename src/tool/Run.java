@@ -6,35 +6,35 @@ import java.util.Date;
 import java.util.TimerTask;
 
 public class Run extends TimerTask {
-	static int Size;
-	int FirstSize;
-	// ブラウザ上から直接修正
-	// エクリプス上から修正（エンコード変更）
+	//一定間隔で繰り返し行う処理
 	public void run() {
+		for(int i = 0;i < Csv.csvData.size();i++){
+			int Size[] = new int[Csv.csvData.size()];
+			int FirstSize[] = new int[Csv.csvData.size()];
 		
-		File CheckFile = new File(Csv.dir.get(0));
-		Size = (int)CheckFile.length();
-		System.out.print(Size);
-		System.out.println("タスク実行：" + new Date());
+			File CheckFile = new File(Csv.csvData.get(i));
+			Size[i]=((int)CheckFile.length());
+			System.out.print("ファイルサイズ"+i+"："+Size[i]);
+			System.out.println("タスク実行：" + new Date());
 		
-	//	for(int i = 0;i<5;i++){
-	//		
-	//	}
-		
-	            	if(FirstSize == 0){
-	            	//	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルの大きさが0です", TrayIcon.MessageType.WARNING);
-	            		FirstSize = Size;
-	            	}
+	        if(FirstSize[i] == 0){
+	        //	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルの大きさが0です", TrayIcon.MessageType.WARNING);
+	        	FirstSize[i]=Size[i];
+	        }
 	            	
-	            	if(FirstSize == Size){
-	            	//	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルの大きさが同じです", TrayIcon.MessageType.WARNING);
-	            		FirstSize = Size;
-	            	}
+	        if(FirstSize[i] == Size[i]){
+	        //	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルの大きさが同じです", TrayIcon.MessageType.WARNING);
+	        	FirstSize[i]=Size[i];
+	        }
 	            	
-	            	else if (FirstSize != Size) {
-	            		MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルが更新されました", TrayIcon.MessageType.INFO);
-	            		FirstSize = Size;
-	            	}
-	            }					
+	        else if (FirstSize[i] != Size[i]) {
+	        	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルが更新されました", TrayIcon.MessageType.INFO);
+	        	FirstSize[i]=Size[i];
+	        }
+	        else{
+	        	System.out.print("ファイルサイズ取得失敗");
+	        }
+		}
 	}
+}
 

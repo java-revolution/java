@@ -96,6 +96,7 @@ class MainUpdateCheker{
 		main.timerperiod();
 	}
 	void timerperiod() throws InterruptedException{
+		
 		task = new Run();
 		timer = new Timer();
 
