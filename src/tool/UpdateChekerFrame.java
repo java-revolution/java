@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class UpdateChekerFrame extends JFrame{
 	static void watching(){
@@ -25,16 +25,11 @@ public class UpdateChekerFrame extends JFrame{
 	}
 	
 	UpdateChekerFrame(String title){
-		//テーブルデータ作成
-		String[][] tabledata = {
-		    {Csv.dir.get(0), "", "txt", "監視中"},
-		    {"", "", "", ""},
-		    {"", "", "", ""},
-		    {"", "", "", ""}
-		};
-		String[] columnNames = {"名前", "対象", "タイプ", "状態"};
 		
-		JTable table = new JTable(tabledata,columnNames);
+		String[] columnNames = {"チェック", "対象", "タイプ", "状態"};
+		
+		DefaultTableModel model = new DefaultTableModel(columnNames, 10);
+		UpdateChekerTable table = new UpdateChekerTable(model);
 		
 		//スクロールバー作成
 		JScrollPane sp = new JScrollPane(table);
@@ -44,7 +39,7 @@ public class UpdateChekerFrame extends JFrame{
 	    JButton addbutton = new JButton("追加");
 	    JButton delbutton = new JButton("削除");
 	    
-	    ActionListener al = new ActionListener() {
+	    ActionListener aladd = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser filechooser = new JFileChooser();
 				int selected = filechooser.showOpenDialog(null);
@@ -57,10 +52,7 @@ public class UpdateChekerFrame extends JFrame{
 			            
 			            pw.print(file.getAbsolutePath());
 			            pw.print(",");
-			            // ******************************
-			            // ↓はあってもよいのでは
-			            // ******************************
-			            // pw.println();
+			            pw.println();
 			            pw.close();
 			            
 					} catch (IOException ex) {
@@ -70,8 +62,24 @@ public class UpdateChekerFrame extends JFrame{
 				}
 			}
 		};
+		
+		
+		ActionListener aldel = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		};
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	    
-	    addbutton.addActionListener(al);
+	    addbutton.addActionListener(aladd);
 	    
 		//フレーム表示位置
 		setBounds(600, 300, 400, 400);
