@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Csv {
-	static ArrayList<String> dir = new ArrayList<String>();
 	static ArrayList<String> csvData = new ArrayList<String>();
 	//一時的に追加
 	static String sCSV_FILE_PATH = "./res/data/test.csv";
@@ -15,7 +14,7 @@ public class Csv {
 	static void Csvload(){
 		String filename = sCSV_FILE_PATH;
 		File file = new File(filename);
-		dir.clear();
+		csvData.clear();
 		
 		try {
 			FileInputStream fis = new FileInputStream(file);
