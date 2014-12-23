@@ -16,90 +16,101 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 //通知テストコミット
 //メインクラス
-class MainUpdateCheker{
+
+class MainUpdateCheker {
 	static TrayIcon icon;
-	static TimerTask task;
+	// TASK_TYPE
+	static TimerTask TASK_TYPE_FILE;
+	static TimerTask TASK_TYPE_DIR;
+	static TimerTask TASK_TYPE_RSS;
+	static TimerTask TASK_TYPE_VSS;
+	// CHECK_CYCLE
+	private static final long CHECK_CYCLE_FILE = 5000;
+	private static final long CHECK_CYCLE_DIR = 5000;
+	private static final long CHECK_CYCLE_RSS = 5000;
+	private static final long CHECK_CYCLE_VSS = 5000;
 	static Timer timer;
-	
-	public static void main(String args[]) throws InterruptedException{
-		try{
+
+	public static void main(String args[]) throws InterruptedException {
+		try {
 			Csv.Csvload();
-			//メニューアイテムの作成
+			// メニューアイテムの作成
 			MenuItem watchingItem = new MenuItem("監視対象一覧");
 			final MenuItem stopItem = new MenuItem("一時停止");
 			final MenuItem restartItem = new MenuItem("再開");
 			MenuItem exitItem = new MenuItem("終了");
 			restartItem.setEnabled(false);
-		
-			//アイコンの作成
+
+			// アイコンの作成
 			SystemTray tray = SystemTray.getSystemTray();
 			icon = new TrayIcon(ImageIO.read(new File("res/pic/tray_icon.png")));
 			tray.add(icon);
-	
-			//監視対象一覧
+
+			// 監視対象一覧
 			watchingItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					UpdateChekerFrame.watching();
 				}
 			});
-		
-			//一時停止メニュー
+
+			// 一時停止メニュー
 			stopItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					icon.displayMessage("お知らせ","一時停止しました",MessageType.INFO);
+					icon.displayMessage("お知らせ", "一時停止しました", MessageType.INFO);
 					System.out.println("一時停止します");
-					task.cancel();
-					task = null;
+					TASK_TYPE_FILE.cancel();
+					TASK_TYPE_FILE = null;
 					stopItem.setEnabled(false);
 					restartItem.setEnabled(true);
 				}
 			});
-		
-			//再開
+
+			// 再開
 			restartItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					icon.displayMessage("お知らせ","再開しました",MessageType.INFO);
-					if (task == null) {
-						task = new Run();
+					icon.displayMessage("お知らせ", "再開しました", MessageType.INFO);
+					if (TASK_TYPE_FILE == null) {
+						TASK_TYPE_FILE = new Run();
 					}
 					System.out.println("再開します");
-					timer.schedule(task, 0, 5000);
+					timer.schedule(TASK_TYPE_FILE, 0, CHECK_CYCLE_FILE);
 					stopItem.setEnabled(true);
 					restartItem.setEnabled(false);
 				}
 			});
-		
-			//終了メニュー
+
+			// 終了メニュー
 			exitItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.exit(0);
 				}
 			});
-		
-			//ポップアップメニュー
+
+			// ポップアップメニュー
 			PopupMenu menu = new PopupMenu();
-    
+
 			// メニューにアイテムを追加
 			menu.add(stopItem);
 			menu.add(restartItem);
 			menu.add(exitItem);
 			menu.add(watchingItem);
-		
+
 			icon.setPopupMenu(menu);
-	
-		}catch (IOException ex) {
+
+		} catch (IOException ex) {
 			ex.printStackTrace();
-		}catch (AWTException ex) {
+		} catch (AWTException ex) {
 			ex.printStackTrace();
 		}
 		MainUpdateCheker main = new MainUpdateCheker();
 		main.timerperiod();
 	}
-	void timerperiod() throws InterruptedException{
-		
-		task = new Run();
+
+	void timerperiod() throws InterruptedException {
+
+		TASK_TYPE_FILE = new Run();
 		timer = new Timer();
 
-		timer.schedule(task, 0, 5000);
+		timer.schedule(TASK_TYPE_FILE, 0, CHECK_CYCLE_FILE);
 	}
 }
