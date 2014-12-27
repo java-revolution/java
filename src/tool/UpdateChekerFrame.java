@@ -11,17 +11,19 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 
 public class UpdateChekerFrame extends JFrame{
 	static String[] columnNames = {"チェック", "対象", "タイプ", "状態"};
 	static DefaultTableModel model = new DefaultTableModel(columnNames, Csv.csvData.size());
+	static ArrayList<String> delArray = new ArrayList<String>();
+	static ArrayList<String> csvData = new ArrayList<String>();
 	
 	static void watching(){
 		UpdateChekerFrame frame = new UpdateChekerFrame("監視対象管理");
@@ -37,15 +39,15 @@ public class UpdateChekerFrame extends JFrame{
 		model.setValueAt(true,i,0);
 		}		
 		
-		//スクロールバー作成
+		// スクロールバー作成
 		JScrollPane sp = new JScrollPane(table);
 	    sp.setPreferredSize(new Dimension(250, 90));
 	    
-	    //ボタン作成
+	    // ボタン作成
 	    JButton addbutton = new JButton("追加");
 	    JButton delbutton = new JButton("削除");
 	    
-	    //追加ボタン処理
+	    // 追加ボタン処理(再読み込み処理必須)
 	    ActionListener aladd = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser filechooser = new JFileChooser();
@@ -70,8 +72,8 @@ public class UpdateChekerFrame extends JFrame{
 			}
 		};
 		
-		//削除ボタン処理（未完成）
-		//メモ：ファイル名を配列に格納しすべてを再書き込み
+		// 削除ボタン処理(再読み込み処理必須)
+		
 		ActionListener aldel = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -79,20 +81,22 @@ public class UpdateChekerFrame extends JFrame{
 					System.out.println(model.getValueAt(i,0));
 					String TableBoolean = model.getValueAt(i,0).toString();
 					if(TableBoolean.equals("false")){
-						try {
-							FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, false);
-				            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-				            
-				            pw.print(model.getValueAt(i,1));
-				            pw.print(",");
-				            pw.println();
-				            pw.close();
-				            
-						} catch (IOException ex) {
-							//例外時処理
-							ex.printStackTrace();
-				        }
+						delArray.add(model.getValueAt(i,1).toString());
 					}
+					try {
+						FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, false);
+			            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
+			            for(int j = 0;j < delArray.size();j++){
+			            pw.print(delArray.get(j));
+			            pw.print(",");
+			            }
+			            pw.println();
+			            pw.close();
+			            
+					} catch (IOException ex) {
+						//例外時処理
+						ex.printStackTrace();
+			        }
 				}
 			}
 		};

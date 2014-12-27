@@ -28,7 +28,7 @@ public class Run extends TimerTask {
 	        }
 	            	
 	        else if (FirstSize[i] != Size[i]) {
-	        	MainUpdateCheker.icon.displayMessage("メッセージ", "ファイルが更新されました", TrayIcon.MessageType.INFO);
+	        	TaskTray.ICON.displayMessage("メッセージ", "ファイルが更新されました", TrayIcon.MessageType.INFO);
 	        	FirstSize[i]=Size[i];
 	        }
 	        else{
