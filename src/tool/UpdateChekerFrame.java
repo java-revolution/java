@@ -35,8 +35,8 @@ public class UpdateChekerFrame extends JFrame{
 		UpdateChekerTable table = new UpdateChekerTable(model);
 		
 		for(int i=0; i < Csv.csvData.size(); i++){
-		model.setValueAt(Csv.csvData.get(i),i,1);
-		model.setValueAt(true,i,0);
+			model.setValueAt(Csv.csvData.get(i),i,1);
+			model.setValueAt(true,i,0);
 		}		
 		
 		// スクロールバー作成
@@ -69,6 +69,11 @@ public class UpdateChekerFrame extends JFrame{
 						ex.printStackTrace();
 			        }
 				}
+		//		Csv.Csvload();
+		//		for(int i=0; i < Csv.csvData.size(); i++){
+		//			model.setValueAt(Csv.csvData.get(i),i,1);
+		//			model.setValueAt(true,i,0);
+		//		}		
 			}
 		};
 		
