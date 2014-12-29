@@ -6,10 +6,11 @@ import java.util.Date;
 import java.util.TimerTask;
 
 public class Run extends TimerTask {
-	private int BEFORE_FILE_SIZE[] = new int[Csv.csvData.size()];
-	private int AFTER_FILE_SIZE[] = new int[Csv.csvData.size()];
+	 static int BEFORE_FILE_SIZE[] = new int[Csv.csvData.size()];
+	 static int AFTER_FILE_SIZE[] = new int[Csv.csvData.size()];
 	// 一定間隔で繰り返し行う処理
 	public void run() {
+		 
 		for(int i = 0;i < Csv.csvData.size();i++){
 			File CHECKFILE = new File(Csv.csvData.get(i));
 			BEFORE_FILE_SIZE[i]=((int)CHECKFILE.length());

@@ -69,11 +69,14 @@ public class UpdateChekerFrame extends JFrame{
 						ex.printStackTrace();
 			        }
 				}
-		//		Csv.Csvload();
-		//		for(int i=0; i < Csv.csvData.size(); i++){
-		//			model.setValueAt(Csv.csvData.get(i),i,1);
-		//			model.setValueAt(true,i,0);
-		//		}		
+				Csv.Csvload();
+				Run.BEFORE_FILE_SIZE = new int[Csv.csvData.size()];
+				Run.AFTER_FILE_SIZE = new int[Csv.csvData.size()];
+				model = new DefaultTableModel(columnNames, Csv.csvData.size());
+				for(int i=0; i < Csv.csvData.size(); i++){
+					model.setValueAt(Csv.csvData.get(i),i,1);
+					model.setValueAt(true,i,0);
+				}		
 			}
 		};
 		
@@ -102,6 +105,14 @@ public class UpdateChekerFrame extends JFrame{
 						//例外時処理
 						ex.printStackTrace();
 			        }
+				}
+				Csv.Csvload();
+				Run.BEFORE_FILE_SIZE = new int[Csv.csvData.size()];
+				Run.AFTER_FILE_SIZE = new int[Csv.csvData.size()];
+				model = new DefaultTableModel(columnNames, Csv.csvData.size());
+				for(int i=0; i < Csv.csvData.size(); i++){
+					model.setValueAt(Csv.csvData.get(i),i,1);
+					model.setValueAt(true,i,0);
 				}
 			}
 		};
