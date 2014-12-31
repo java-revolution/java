@@ -14,6 +14,7 @@ public class CheckerController {
 	private Timer oFileCheckTimer;
 	private Timer oRssCheckTimer;
 
+	// 起動時／再開時実行処理
 	public void start() {
 
 		oFileCheckTimer = new Timer();
@@ -22,6 +23,7 @@ public class CheckerController {
 		oRssCheckTimer.schedule(new RssTask(), 0, CHECK_CYCLE_RSS);
 	}
 
+	// 終了時／一時停止時実行処理
 	public void stop() {
 
 		oFileCheckTimer.cancel();

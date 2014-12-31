@@ -7,12 +7,12 @@ import java.util.TimerTask;
 
 //public class Run extends TimerTask {
 public class FileTask extends TimerTask {
+	// 　ファイルサイズを格納する配列
 	static int BEFORE_FILE_SIZE[] = new int[Csv.CSVDATA.size()];
 	static int AFTER_FILE_SIZE[] = new int[Csv.CSVDATA.size()];
 
 	// 一定間隔で繰り返し行う処理
 	public void run() {
-
 		for (int i = 0; i < Csv.CSVDATA.size(); i++) {
 			File CHECKFILE = new File(Csv.CSVDATA.get(i));
 			BEFORE_FILE_SIZE[i] = ((int) CHECKFILE.length());

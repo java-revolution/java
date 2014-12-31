@@ -65,8 +65,8 @@ public class UpdateChekerFrame extends JFrame {
 				}
 				// 設定ファイル再読み込み
 				Csv.Csvload();
-				Run.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
-				Run.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				FileTask.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				FileTask.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
 				MODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
 				for (int i = 0; i < Csv.CSVDATA.size(); i++) {
 					MODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
@@ -100,8 +100,8 @@ public class UpdateChekerFrame extends JFrame {
 				}
 				// 設定ファイル再読み込み
 				Csv.Csvload();
-				Run.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
-				Run.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				FileTask.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				FileTask.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
 				MODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
 				for (int i = 0; i < Csv.CSVDATA.size(); i++) {
 					MODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
