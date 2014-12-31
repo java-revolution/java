@@ -13,8 +13,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import tool.checker.CheckerController;
-
 public class TaskTray {
 	// private static Timer TIMER;
 	static TrayIcon ICON;

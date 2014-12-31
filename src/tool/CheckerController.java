@@ -1,8 +1,6 @@
-package tool.checker;
+package tool;
 
 import java.util.Timer;
-
-import tool.Run;
 
 public class CheckerController {
 
@@ -19,9 +17,9 @@ public class CheckerController {
 	public void start() {
 
 		oFileCheckTimer = new Timer();
-		oFileCheckTimer.schedule(new Run(), 0, CHECK_CYCLE_FILE);
-		// oRssCheckTimer = new Timer();
-		// oRssCheckTimer.schedule(new Xxx(), 0, CHECK_CYCLE_RSS);
+		oFileCheckTimer.schedule(new FileTask(), 0, CHECK_CYCLE_FILE);
+		oRssCheckTimer = new Timer();
+		oRssCheckTimer.schedule(new RssTask(), 0, CHECK_CYCLE_RSS);
 	}
 
 	public void stop() {

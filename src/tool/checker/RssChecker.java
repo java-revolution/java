@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -16,13 +15,23 @@ import com.sun.syndication.io.XmlReader;
 
 public class RssChecker implements Checker {
 
-	private final static Map<String, String> UPDATE_INFO = new HashMap<String, String>();
 	private final static DateFormat SDF = new SimpleDateFormat("yyyyMMddHHmmss");
 
+	private Map<String, String> oUpdateHistory;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param oUpdateHistory
+	 */
+	public RssChecker(Map<String, String> oUpdateHistory) {
+		super();
+		this.oUpdateHistory = oUpdateHistory;
+	}
+
 	@Override
-	public void Check(String sURL) throws Exception {
+	public boolean Check(String sURL) throws Exception {
 		// sURL = "https://github.com/mimicman.atom";
-		sURL = "http://feed.rssad.jp/rss/gigazine/rss_atom";
 
 		// ******************************
 		// RSS読み込み
@@ -50,18 +59,19 @@ public class RssChecker implements Checker {
 		// ******************************
 		// 更新有無確認
 		// ******************************
+		boolean isUpdate = false;
 		if (newUpdate == null) {
 
 			System.out.println(sURL + "の情報を取得できませんでした。");
 		} else {
 
-			String sDate = UPDATE_INFO.get(sURL);
+			String sDate = oUpdateHistory.get(sURL);
 			Calendar newCalendar = Calendar.getInstance();
 			newCalendar.setTime(newUpdate);
 			if (sDate == null) {
 
 				System.out.println("初回読み込み");
-				UPDATE_INFO.put(sURL, SDF.format(newUpdate));
+				oUpdateHistory.put(sURL, SDF.format(newUpdate));
 			} else {
 
 				String sUpdateDate = SDF.format(newUpdate);
@@ -71,9 +81,11 @@ public class RssChecker implements Checker {
 						.compareTo(new BigDecimal(sUpdateDate)) < 0) {
 
 					System.out.println("更新がありました。");
-					UPDATE_INFO.put(sURL, sUpdateDate);
+					oUpdateHistory.put(sURL, sUpdateDate);
+					isUpdate = true;
 				}
 			}
 		}
+		return isUpdate;
 	}
 }

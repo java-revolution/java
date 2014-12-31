@@ -2,5 +2,5 @@ package tool.checker;
 
 public interface Checker {
 
-	abstract public void Check(String sArg) throws Exception;
+	abstract public boolean Check(String sArg) throws Exception;
 }
