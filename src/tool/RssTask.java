@@ -8,8 +8,8 @@ import java.util.TimerTask;
 import tool.checker.RssChecker;
 
 public class RssTask extends TimerTask {
-	static int BEFORE_FILE_SIZE[] = new int[Csv.csvData.size()];
-	static int AFTER_FILE_SIZE[] = new int[Csv.csvData.size()];
+	static int BEFORE_FILE_SIZE[] = new int[Csv.CSVDATA.size()];
+	static int AFTER_FILE_SIZE[] = new int[Csv.CSVDATA.size()];
 
 	// 終了時ファイルへ出力し起動時ファイルから読み込む処理未実装
 	private final static Map<String, String> UPDATE_HISTORY = new HashMap<String, String>();

@@ -20,11 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 public class UpdateChekerFrame extends JFrame {
-	static String[] columnNames = { "チェック", "対象", "タイプ", "状態" };
-	static DefaultTableModel model = new DefaultTableModel(columnNames,
-			Csv.csvData.size());
-	static ArrayList<String> delArray = new ArrayList<String>();
-	static ArrayList<String> csvData = new ArrayList<String>();
+	// テーブルの見出し設定delArray
+	private static String[] COLUMN_NAMES = { "チェック", "対象", "タイプ", "状態" };
+	private static DefaultTableModel MODEL = new DefaultTableModel(
+			COLUMN_NAMES, Csv.CSVDATA.size());
+	private static ArrayList<String> DELARRAY = new ArrayList<String>();
 
 	static void watching() {
 		UpdateChekerFrame frame = new UpdateChekerFrame("監視対象管理");
@@ -32,22 +32,17 @@ public class UpdateChekerFrame extends JFrame {
 	}
 
 	UpdateChekerFrame(String title) {
-
-		UpdateChekerTable table = new UpdateChekerTable(model);
-
-		for (int i = 0; i < Csv.csvData.size(); i++) {
-			model.setValueAt(Csv.csvData.get(i), i, 1);
-			model.setValueAt(true, i, 0);
+		UpdateChekerTable table = new UpdateChekerTable(MODEL);
+		for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+			MODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
+			MODEL.setValueAt(true, i, 0);
 		}
-
 		// スクロールバー作成
 		JScrollPane sp = new JScrollPane(table);
 		sp.setPreferredSize(new Dimension(250, 90));
-
 		// ボタン作成
 		JButton addbutton = new JButton("追加");
 		JButton delbutton = new JButton("削除");
-
 		// 追加ボタン処理(再読み込み処理必須)
 		ActionListener aladd = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -59,69 +54,63 @@ public class UpdateChekerFrame extends JFrame {
 					try {
 						FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH, true);
 						PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-
 						pw.print(file.getAbsolutePath());
 						pw.print(",");
 						pw.println();
 						pw.close();
-
 					} catch (IOException ex) {
 						// 例外時処理
 						ex.printStackTrace();
 					}
 				}
+				// 設定ファイル再読み込み
 				Csv.Csvload();
-				FileTask.BEFORE_FILE_SIZE = new int[Csv.csvData.size()];
-				FileTask.AFTER_FILE_SIZE = new int[Csv.csvData.size()];
-				model = new DefaultTableModel(columnNames, Csv.csvData.size());
-				for (int i = 0; i < Csv.csvData.size(); i++) {
-					model.setValueAt(Csv.csvData.get(i), i, 1);
-					model.setValueAt(true, i, 0);
+				Run.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				Run.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				MODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
+				for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+					MODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
+					MODEL.setValueAt(true, i, 0);
 				}
 			}
 		};
-
 		// 削除ボタン処理(再読み込み処理必須)
-
 		ActionListener aldel = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				for (int i = 0; i < Csv.csvData.size(); i++) {
-					System.out.println(model.getValueAt(i, 0));
-					String TableBoolean = model.getValueAt(i, 0).toString();
+				for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+					System.out.println(MODEL.getValueAt(i, 0));
+					String TableBoolean = MODEL.getValueAt(i, 0).toString();
 					if (TableBoolean.equals("false")) {
-						delArray.add(model.getValueAt(i, 1).toString());
+						DELARRAY.add(MODEL.getValueAt(i, 1).toString());
 					}
 					try {
 						FileWriter fw = new FileWriter(Csv.sCSV_FILE_PATH,
 								false);
 						PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
-						for (int j = 0; j < delArray.size(); j++) {
-							pw.print(delArray.get(j));
+						for (int j = 0; j < DELARRAY.size(); j++) {
+							pw.print(DELARRAY.get(j));
 							pw.print(",");
 						}
 						pw.println();
 						pw.close();
-
 					} catch (IOException ex) {
 						// 例外時処理
 						ex.printStackTrace();
 					}
 				}
+				// 設定ファイル再読み込み
 				Csv.Csvload();
-				FileTask.BEFORE_FILE_SIZE = new int[Csv.csvData.size()];
-				FileTask.AFTER_FILE_SIZE = new int[Csv.csvData.size()];
-				model = new DefaultTableModel(columnNames, Csv.csvData.size());
-				for (int i = 0; i < Csv.csvData.size(); i++) {
-					model.setValueAt(Csv.csvData.get(i), i, 1);
-					model.setValueAt(true, i, 0);
+				Run.BEFORE_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				Run.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
+				MODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
+				for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+					MODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
+					MODEL.setValueAt(true, i, 0);
 				}
 			}
 		};
-
 		addbutton.addActionListener(aladd);
 		delbutton.addActionListener(aldel);
-
 		// フレーム表示位置
 		setBounds(600, 300, 400, 400);
 		// ×を押した時の処理
@@ -133,14 +122,11 @@ public class UpdateChekerFrame extends JFrame {
 		setLayout(new GridLayout(2, 1));
 		add(contentPane1);
 		add(contentPane2);
-
 		contentPane1.setLayout(new FlowLayout());
 		contentPane2.setLayout(new FlowLayout());
-
 		// ボタン、テーブルの配置
 		contentPane1.add(sp);
 		contentPane2.add(delbutton);
 		contentPane2.add(addbutton);
-
 	}
 }
