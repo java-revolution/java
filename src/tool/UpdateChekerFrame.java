@@ -35,6 +35,13 @@ public class UpdateChekerFrame extends JFrame {
     UpdateChekerFrame(String title) {
         UpdateChekerTable table = new UpdateChekerTable(TABLEMODEL);
         for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+            // ファイル拡張子取得
+            int point = Csv.CSVDATA.get(i).lastIndexOf(".");
+            String SUFFIX = null;
+            if (point != -1) {
+                SUFFIX = Csv.CSVDATA.get(i).substring(point + 1);
+            }
+            TABLEMODEL.setValueAt(SUFFIX, i, 2);
             TABLEMODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
             TABLEMODEL.setValueAt(true, i, 0);
         }
@@ -70,6 +77,13 @@ public class UpdateChekerFrame extends JFrame {
                 FileTask.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
                 TABLEMODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
                 for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+                 // ファイル拡張子取得
+                    int point = Csv.CSVDATA.get(i).lastIndexOf(".");
+                    String SUFFIX = null;
+                    if (point != -1) {
+                        SUFFIX = Csv.CSVDATA.get(i).substring(point + 1);
+                    }
+                    TABLEMODEL.setValueAt(SUFFIX, i, 2);
                     TABLEMODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
                     TABLEMODEL.setValueAt(true, i, 0);
                 }
@@ -105,6 +119,13 @@ public class UpdateChekerFrame extends JFrame {
                 FileTask.AFTER_FILE_SIZE = new int[Csv.CSVDATA.size()];
                 TABLEMODEL = new DefaultTableModel(COLUMN_NAMES, Csv.CSVDATA.size());
                 for (int i = 0; i < Csv.CSVDATA.size(); i++) {
+                 // ファイル拡張子取得
+                    int point = Csv.CSVDATA.get(i).lastIndexOf(".");
+                    String SUFFIX = null;
+                    if (point != -1) {
+                        SUFFIX = Csv.CSVDATA.get(i).substring(point + 1);
+                    }
+                    TABLEMODEL.setValueAt(SUFFIX, i, 2);
                     TABLEMODEL.setValueAt(Csv.CSVDATA.get(i), i, 1);
                     TABLEMODEL.setValueAt(true, i, 0);
                 }
